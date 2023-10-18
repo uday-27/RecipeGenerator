@@ -136,13 +136,6 @@ int main()
                 "Add soy sauce, ketchup, chili sauce, vinegar.\n"
                 "Return paneer, mix, and season with salt. Garnish with coriander and serve hot.");
 
-    // Menu
-    cout << "Choose Ingredients (Enter 0 to stop):" << endl;
-    for (int i = 0; i < 20; i++)
-    {
-        cout << i + 1 << ". " << ingredients[i].getName() << endl;
-    }
-
     int selectedCount = 0;
     int choice;
     bool selected[20] = {false};
@@ -161,7 +154,7 @@ int main()
         {
             cout << "Invalid choice, try again." << endl;
         }
-    } while (choice != 0 && selectedCount < 4);
+    } while (choice != 0 && selectedCount < 6);
 
     cout << "\n Suggested Recipes: " << endl;
     bool dish1Possible = selected[0] && selected[1] && selected[2];

@@ -16,7 +16,7 @@ public:
         return name;
     }
 
-    friend ostream& operator<<(ostream& os, const Ingredient& ingredient)
+    friend ostream &operator<<(ostream &os, const Ingredient &ingredient)
     {
         os << ingredient.name;
         return os;
@@ -64,12 +64,6 @@ int main()
                                 Ingredient("Sugar"), Ingredient("Soya Sauce"), Ingredient("Curd"),
                                 Ingredient("Oil"), Ingredient("Cucumber"), Ingredient("Paneer"),
                                 Ingredient("Green Peas"), Ingredient("Capsicum")};
-    
-    cout << "Choose Ingredients (Enter 0 to stop):" << endl;
-    for (int i = 0; i < 20; i++)
-    {
-        cout << i + 1 << ". " << ingredients[i] << endl;
-    }
 
     // Recipes
     Dish dish1("Cheese Sandwich", "10-15 Minutes",
@@ -136,82 +130,98 @@ int main()
                 "Add soy sauce, ketchup, chili sauce, vinegar.\n"
                 "Return paneer, mix, and season with salt. Garnish with coriander and serve hot.");
 
-    int selectedCount = 0;
-    int choice;
-    bool selected[20] = {false};
-
-    do
+    while (true)
     {
-        cout << "Enter the ingredient number (0 to stop): ";
-        cin >> choice;
-
-        if (choice > 0 && choice <= 20)
+        cout << "Choose Ingredients (Enter 0 to stop):" << endl;
+        for (int i = 0; i < 20; i++)
         {
-            selected[choice - 1] = true;
-            selectedCount++;
+            cout << i + 1 << ". " << ingredients[i] << endl;
         }
-        else if (choice != 0)
+
+        int selectedCount = 0;
+        int choice;
+        bool selected[20] = {false};
+
+        do
         {
-            cout << "Invalid choice, try again." << endl;
+            cout << "Enter the ingredient number (0 to stop): ";
+            cin >> choice;
+
+            if (choice > 0 && choice <= 20)
+            {
+                selected[choice - 1] = true;
+                selectedCount++;
+            }
+            else if (choice != 0)
+            {
+                cout << "Invalid choice, try again." << endl;
+            }
+        } while (choice != 0 && selectedCount < 6);
+
+        cout << "\n Suggested Recipes: " << endl;
+        bool dish1Possible = selected[0] && selected[1] && selected[2];
+        bool dish2Possible = selected[1] && selected[2] && selected[3];
+        bool dish3Possible = selected[5] && selected[6] && selected[8] && selected[10];
+        bool dish4Possible = selected[5] && selected[8] && selected[11] && selected[15];
+        bool dish5Possible = selected[6] && selected[9] && selected[12];
+        bool dish6Possible = selected[5] && selected[10] && selected[11] && selected[15];
+        bool dish7Possible = selected[2] && selected[4] && selected[10];
+        bool dish8Possible = selected[8] && selected[11] && selected[18] && selected[15];
+        bool dish9Possible = selected[10] && selected[14] && selected[16];
+        bool dish10Possible = selected[10] && selected[13] && selected[17] && selected[19] && selected[15];
+
+        if (dish1Possible)
+        {
+            dish1.displayRecipe();
         }
-    } while (choice != 0 && selectedCount < 6);
+        if (dish2Possible)
+        {
+            dish2.displayRecipe();
+        }
+        if (dish3Possible)
+        {
+            dish3.displayRecipe();
+        }
+        if (dish4Possible)
+        {
+            dish4.displayRecipe();
+        }
+        if (dish5Possible)
+        {
+            dish5.displayRecipe();
+        }
+        if (dish6Possible)
+        {
+            dish6.displayRecipe();
+        }
+        if (dish7Possible)
+        {
+            dish7.displayRecipe();
+        }
+        if (dish8Possible)
+        {
+            dish8.displayRecipe();
+        }
+        if (dish9Possible)
+        {
+            dish9.displayRecipe();
+        }
+        if (dish10Possible)
+        {
+            dish10.displayRecipe();
+        }
+        if (!dish1Possible && !dish2Possible && !dish3Possible && !dish4Possible && !dish5Possible && !dish6Possible && !dish7Possible && !dish8Possible && !dish9Possible && !dish10Possible)
+        {
+            cout << "No matching recipes found for the selected ingredients." << endl;
+        }
 
-    cout << "\n Suggested Recipes: " << endl;
-    bool dish1Possible = selected[0] && selected[1] && selected[2];
-    bool dish2Possible = selected[1] && selected[2] && selected[3];
-    bool dish3Possible = selected[5] && selected[6] && selected[8] && selected[10];
-    bool dish4Possible = selected[5] && selected[8] && selected[11] && selected[15];
-    bool dish5Possible = selected[6] && selected[9] && selected[12];
-    bool dish6Possible = selected[5] && selected[10] && selected[11] && selected[15];
-    bool dish7Possible = selected[2] && selected[4] && selected[10];
-    bool dish8Possible = selected[8] && selected[11] && selected[18] && selected[15];
-    bool dish9Possible = selected[10] && selected[14] && selected[16];
-    bool dish10Possible = selected[10] && selected[13] && selected[17] && selected[19] && selected[15];
-
-    if (dish1Possible)
-    {
-        dish1.displayRecipe();
+        char continueChoice;
+        cout << "Do you want to continue? (y/n): ";
+        cin >> continueChoice;
+        if (continueChoice != 'y' && continueChoice != 'Y')
+        {
+            break;
+        }
     }
-    if (dish2Possible)
-    {
-        dish2.displayRecipe();
-    }
-    if (dish3Possible)
-    {
-        dish3.displayRecipe();
-    }
-    if (dish4Possible)
-    {
-        dish4.displayRecipe();
-    }
-    if (dish5Possible)
-    {
-        dish5.displayRecipe();
-    }
-    if (dish6Possible)
-    {
-        dish6.displayRecipe();
-    }
-    if (dish7Possible)
-    {
-        dish7.displayRecipe();
-    }
-    if (dish8Possible)
-    {
-        dish8.displayRecipe();
-    }
-    if (dish9Possible)
-    {
-        dish9.displayRecipe();
-    }
-    if (dish10Possible)
-    {
-        dish10.displayRecipe();
-    }
-    if (!dish1Possible && !dish2Possible && !dish3Possible && !dish4Possible && !dish5Possible && !dish6Possible && !dish7Possible && !dish8Possible && !dish9Possible && !dish10Possible)
-    {
-        cout << "No matching recipes found for the selected ingredients." << endl;
-    }
-
     return 0;
 }

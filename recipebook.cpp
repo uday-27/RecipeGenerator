@@ -156,7 +156,7 @@ int main()
             {
                 cout << "Invalid choice, try again." << endl;
             }
-        } while (choice != 0 && selectedCount < 6);
+        } while (choice != 0);
 
         cout << "\n Suggested Recipes: " << endl;
         bool dish1Possible = selected[0] && selected[1] && selected[2];
